@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="hr_attendance_view_form_face_attendance" model="ir.ui.view">
+        <field name="name">hr.attendance.view.form.face.attendance</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='in_browser']" position="after">
+                <field name="in_selfie" widget="image" class="oe_avatar" readonly="1" invisible="in_mode !='kiosk'"/>
+            </xpath>
+            <xpath expr="//field[@name='out_browser']" position="after">
+                <field name="out_selfie" widget="image" class="oe_avatar" readonly="1" invisible="out_mode !='kiosk'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_attendance_tree_face_attendance" model="ir.ui.view">
+        <field name="name">attendance.view.tree.face.attendance</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='write_date']" position="after">
+                <field name="in_selfie" widget="image" class="oe_avatar" optional="hidden"
+                       options="{'zoom': true, 'size': [50, 50]}"/>
+                <field name="out_selfie" widget="image" class="oe_avatar" optional="hidden"
+                       options="{'zoom': true, 'size': [50, 50]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

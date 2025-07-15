@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="face_attendance.FaceRecognitionDialog" owl="1">
+        <Dialog title="'Face Scanner'" size="'md'" footer="false" contentClass="'o-barcode-modal'">
+            <video id="webcamFeed" t-ref="webcamFeed" muted="true" autoplay="true" playsinline="true" width="100%"
+                   height="100%"/>
+        </Dialog>
+    </t>
+</templates>
