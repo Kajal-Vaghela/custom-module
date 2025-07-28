@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    Point-8: Please add the automated action for sending mail to responsible(salesperson) of sale order when the delivery order is delivered.-->
+        <record id="email_template_delivery_done_salesperson" model="mail.template">
+            <field name="name">Notify Salesperson on Delivery</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="email_to">{{object.sale_id.user_id.email}}</field>
+            <field name="partner_to">{{ object.id }}</field>
+            <field name="subject">Delivery Completed: {{object.name}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Hello <t t-out="object.sale_id.user_id.name or ''">Sale Person</t>,
+                        <br/><br/>
+                        The delivery order
+                        <strong t-out="object.name or ''">Sale Order</strong> related to Sale Order<strong t-out="object.origin or ''"></strong> has been marked as <strong> Delivered</strong>
+                    </p>
+                    <p>Thank you,<br/></p>
+                </div>
+            </field>
+        </record>
+
+        <!-- ADD AUTOMATION FROM UI SIDE
+
+        automation add filter: [("state", "=", "done")]
+        Execute Python code:
+        if record.sale_id and record.sale_id.user_id and record.sale_id.user_id.email:
+            template = env.ref('bizz_kajal_custom.email_template_delivery_done_salesperson')
+            template.send_mail(record.id, force_send=True)
+       -->
+</odoo>

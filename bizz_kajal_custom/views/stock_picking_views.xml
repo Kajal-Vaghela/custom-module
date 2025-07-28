@@ -1,0 +1,24 @@
+<odoo>
+<!--  Point-5: form view it should be visible only if it has any value-->
+  <record id="view_picking_form_inherit_tags" model="ir.ui.view">
+    <field name="name">stock.picking.form.inherit.sale.tags</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='partner_id']" position="after">
+        <field name="sale_tag_ids" widget="many2many_tags" options="{'no_create': True}" invisible="not sale_tag_ids"/>
+      </xpath>
+    </field>
+  </record>
+<!--Point-5: Visibility of the tags field in delivery order List view should be optional-->
+  <record id="view_picking_tree_inherit_tags" model="ir.ui.view">
+    <field name="name">stock.picking.tree.inherit.sale.tags</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.vpicktree"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='scheduled_date']" position="after">
+        <field name="sale_tag_ids" widget="many2many_tags" optional="show"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

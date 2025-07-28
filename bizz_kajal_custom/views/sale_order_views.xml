@@ -1,0 +1,20 @@
+<odoo>
+    <!-- Point-11: Default filter remove add custom filter by default in sale quotations -->
+    <record id="view_sale_order_filter_custom" model="ir.ui.view">
+        <field name="name">sale.order.search.add.confirmed.done.filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter name="confirmed_done"
+                        string="Confirmed and Done"
+                        domain="[('state', 'in', ('sale', 'done'))]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Point-11: Set default custom filter default-->
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="context">{'search_default_confirmed_done': 1}</field>
+    </record>
+</odoo>
