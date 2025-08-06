@@ -1,7 +1,7 @@
 <odoo>
     <!-- Point-11: Default filter remove add custom filter by default in sale quotations -->
     <record id="view_sale_order_filter_custom" model="ir.ui.view">
-        <field name="name">sale.order.search.add.confirmed.done.filter</field>
+        <field name="name">sale.order.filter.custom</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_sales_order_filter"/>
         <field name="arch" type="xml">
